@@ -4,25 +4,29 @@ CREATE DATABASE companyDB;
 USE companyDB;
 
 CREATE TABLE department(
-  dept_id INT PRIMARY KEY,
+  dept_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   dept_name VARCHAR(30)
 );
 
 CREATE TABLE role(
-  role_id INT PRIMARY KEY,
-  title VARCHAR(30),
+  role_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  role VARCHAR(30),
   salary DECIMAL (6,0),
-  department_id INT
+  department_id INT NOT NULL,
+  FOREIGN KEY (department_id) REFERENCES department(dept_id)
 );
 
 CREATE TABLE employee(
-  employee_id INT PRIMARY KEY,
+  employee_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   first_name VARCHAR(30),
   last_name VARCHAR(30),
-  role_id INT,
-  manager_id INT NULL
+  role_id INT NOT NULL,
+  manager_id INT,
+  FOREIGN KEY (role_id) REFERENCES role(role_id),
+  FOREIGN KEY (manager_id) REFERENCES employee(employee_id)
 );
 
+----------------------------------------------------------------------
 INSERT INTO employee (employee_id, first_name, last_name, role_id, manager_id)
 VALUES 
 (1, "Kristi", "Breen", 11, 0),
