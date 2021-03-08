@@ -1,7 +1,7 @@
 {
-  "name": "Homework12EmployeeTracker",
+  "name": "static-site",
   "version": "1.0.0",
-  "description": "",
+  "description": "tracker",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,6 +19,8 @@
   "homepage": "https://github.com/stefanieklogan/Homework12EmployeeTracker#readme",
   "dependencies": {
     "console.table": "^0.10.0",
+    "inquirer": "^8.0.0",
     "mysql": "^2.18.1"
-  }
+  },
+  "devDependencies": {}
 }

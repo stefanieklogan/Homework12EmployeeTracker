@@ -3,14 +3,14 @@ USE companyDB;
 INSERT INTO department (dept_name) 
 VALUES 
 ("Executive Office"),
-("Bakery"),
+("Food & Beverage"),
 ("Support");
 
 INSERT INTO role (role, salary, department_id) 
 VALUES 
 ("Owner", 100000.00, 1),
-("Business Manager", 70000.00, 3),
-("F&B Leader", 63000.00, 2),
+("Business Manager", 50000.00, 3),
+("Bakery Lead", 63000.00, 2),
 ("Baker I", 55000.00, 2),
 ("Baker II", 45000.00, 2);
 
