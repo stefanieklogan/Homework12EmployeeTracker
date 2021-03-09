@@ -22,8 +22,8 @@ function start() {
         type: "list",
         message: "Welcome to EMPLOYEE TRACKER 2021! Choose from an action below:",
         name: "start",
-        choices: ["Add Department","Add Role","Add Employee","View Departments","View Roles","View Employees","EXIT"]
-        //["Add Department","Add Role","Add Employee","View Departments","View Roles","View Employees","Update Employee Role","Remove Employee","EXIT"]
+        choices: ["Add Department","Add Role","Add Employee","Update Employee Role","View Departments","View Roles","View Employees","EXIT"]
+        //["Remove Employee"]
     })
     .then((res) => {
         switch (res.start) {
@@ -45,9 +45,9 @@ function start() {
             case "View Employees":
               viewEmployees();
               break;
-            // case "Update Employee Role":
-            //   updateEmployee();
-            //   break;
+            case "Update Employee Role":
+              updateEmployee();
+              break;
             // case "Remove Employee":
             //   removeEmployee();
             //   break;
@@ -107,7 +107,7 @@ function addRole() {
         connection.query('INSERT INTO role SET ?', {
             role: res.addRole,
             salary: res.addSalary,
-            department_id: res.addDeptID
+            department_id: res.addDeptId
         });
         console.log("---- Role added ---- ");
     start();
@@ -169,3 +169,9 @@ function viewEmployees() {
 }
 
 //UPDATE EMPLOYEE ROLE
+function  updateEmployee() {
+    connection.query('SELECT * FROM employee',(err, res) => {
+        if (err) throw err;
+        console.table(res);
+    })
+}
