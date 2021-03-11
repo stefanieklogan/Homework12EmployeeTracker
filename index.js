@@ -22,8 +22,7 @@ function start() {
         type: "list",
         message: "Welcome to EMPLOYEE TRACKER 2021! Choose from an action below:",
         name: "start",
-        choices: ["Add Department","Add Role","Add Employee","Update Employee Role","View Departments","View Roles","View Employees","EXIT"]
-        //["Remove Employee"]
+        choices: ["Add Department","Add Role","Add Employee","Update Employee Role","View Departments","View Roles","View Employees","Remove Employee","EXIT"]
     })
     .then((res) => {
         switch (res.start) {
@@ -48,9 +47,9 @@ function start() {
             case "Update Employee Role":
               updateEmployee();
               break;
-            // case "Remove Employee":
-            //   removeEmployee();
-            //   break;
+            case "Remove Employee":
+              removeEmployee();
+              break;
             case "EXIT":
               console.log("Goodbye.")
               connection.end();
@@ -77,7 +76,7 @@ function addDepartment() {
 
 //VIEW DEPARTMENT
 function viewDepartment() {
-    connection.query('SELECT * FROM department',(err, res) => {
+    connection.query('SELECT * FROM department ORDER BY dept_name',(err, res) => {
         if (err) throw err;
         console.table(res);
         start();
@@ -109,16 +108,19 @@ function addRole() {
             salary: res.addSalary,
             department_id: res.addDeptId
         });
-        console.log("---- Role added ---- ");
+        console.log("-------------------")
+        viewRoles();
     start();
     });
 }
 
 //VIEW ROLE
 function viewRoles() {
-    connection.query('SELECT * FROM role',(err, res) => {
+    connection.query('SELECT * FROM role ORDER BY role',(err, res) => {
         if (err) throw err;
+        console.log('\n');
         console.table(res);
+        console.log('\n');
         start();
     });
 }
@@ -161,7 +163,7 @@ function addEmployee() {
 
 //VIEW EMPLOYEE
 function viewEmployees() {
-    connection.query('SELECT * FROM employee',(err, res) => {
+    connection.query('SELECT * FROM employee ORDER BY first_name',(err, res) => {
         if (err) throw err;
         console.table(res);
         start();
@@ -169,9 +171,62 @@ function viewEmployees() {
 }
 
 //UPDATE EMPLOYEE ROLE
+
+//     })
+// }
+
+//UPDATE EMPLOYEE ROLE
 function  updateEmployee() {
-    connection.query('SELECT * FROM employee',(err, res) => {
+    connection.query('SELECT employee_id, first_name, last_name, role FROM employee JOIN role ON employee.role_id = role.role_id ORDER BY first_name',(err, res) => {
         if (err) throw err;
         console.table(res);
-    })
+
+    inquirer.prompt([
+        {
+            type:'input',
+            name:'idToUpdate',
+            message:'Employee ID:'
+        },
+        {
+            type:'input',
+            name:'newRoleId',
+            message:'Desired role ID:'
+        },
+    ]).then((res) => {
+        connection.query('UPDATE employee SET ? WHERE ?', 
+        [
+            {
+            role_id: res.newRoleId,    
+            },
+            {
+            employee_id: res.idToUpdate,
+            }
+        ], 
+        (err, res) => {
+            if (err) throw err;
+            console.log("---- Employee role updated ---- ");
+            start();
+        }
+        );  
+    });
+});
+}
+
+const removeEmployee = () => {
+    inquirer.prompt([
+            {
+                type: "input",
+                name: "removeID",
+                message: "Employee ID to remove:"
+            },
+        ]).then((res) => {
+            connection.query('DELETE FROM employee WHERE ?', {
+                employee_id: res.removeID,
+            }),
+            (err, res) => {
+                if (err) throw err;
+                console.log(res);
+                start();
+            };
+        });
 }
