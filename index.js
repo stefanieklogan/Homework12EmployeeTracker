@@ -108,9 +108,7 @@ function addRole() {
             salary: res.addSalary,
             department_id: res.addDeptId
         });
-        console.log("-------------------")
         viewRoles();
-    start();
     });
 }
 
@@ -118,9 +116,7 @@ function addRole() {
 function viewRoles() {
     connection.query('SELECT * FROM role ORDER BY role',(err, res) => {
         if (err) throw err;
-        console.log('\n');
         console.table(res);
-        console.log('\n');
         start();
     });
 }
@@ -169,11 +165,6 @@ function viewEmployees() {
         start();
     });
 }
-
-//UPDATE EMPLOYEE ROLE
-
-//     })
-// }
 
 //UPDATE EMPLOYEE ROLE
 function  updateEmployee() {
