@@ -5,7 +5,8 @@
 2. [ Project Overview. ](#overview)
 3. [ Dependencies. ](#depend)
 4. [ Installation. ](#install)
-5. [ The other stuff: License & Badges. ](#streetcred)
+5. [ Notes. ](#notes)
+6. [ The other stuff: License & Badges. ](#streetcred)
 
 
 <a name="application"></a>
@@ -41,7 +42,7 @@ Welcome message & menu:
 
 * To run the application, enter 'node index.js' inside terminal. 
 
-<a name="Note"></a>
+<a name="notes"></a>
 ## Notes
 
 * I realize the delete employee functionality has a hiccup as it will not execute the console log and final function. I have validated the code does update the employee table in MySQL. I did bring this matter to my tutor's attention and neither of us were able to deBug. I'd be curious if anyone has pointers.
