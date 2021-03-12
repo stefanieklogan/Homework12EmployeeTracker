@@ -11,7 +11,7 @@
 <a name="application"></a>
 ## Application
 
-* Walk-thru video: xxxxxx
+* Walk-thru video: https://drive.google.com/file/d/1nW5BxOjHAV3T7w-ULQguH-A4bL9X8pER/view
 
 Welcome message & menu:
 ![Command prompt](https://github.com/stefanieklogan/Homework12EmployeeTracker/blob/main/assets/terminal.JPG)

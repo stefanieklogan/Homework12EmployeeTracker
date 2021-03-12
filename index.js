@@ -22,7 +22,7 @@ function start() {
         type: "list",
         message: "Welcome to EMPLOYEE TRACKER 2021! Choose from an action below:",
         name: "start",
-        choices: ["Add Department","Add Role","Add Employee","Update Employee Role","View Departments","View Roles","View Employees","Remove Employee","EXIT"]
+        choices: ["View Departments","View Roles","View Employees","Add Department","Add Role","Add Employee","Update Employee Role","Remove Employee","EXIT"]
     })
     .then((res) => {
         switch (res.start) {
