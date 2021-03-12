@@ -11,12 +11,10 @@
 <a name="application"></a>
 ## Application
 
-* Homepage: https://stark-anchorage-18692.herokuapp.com/
-
 * Walk-thru video: xxxxxx
 
 Welcome message & menu:
-![Command prompt](xxxxxxxxxxxxx)
+![Command prompt](https://github.com/stefanieklogan/Homework12EmployeeTracker/blob/main/assets/terminal.JPG)
 
 <a name="overview"></a>
 ## Project overview

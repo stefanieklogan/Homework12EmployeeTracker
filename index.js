@@ -177,12 +177,12 @@ function  updateEmployee() {
         {
             type:'input',
             name:'idToUpdate',
-            message:'Employee ID:'
+            message:'Employee ID to change:'
         },
         {
             type:'input',
             name:'newRoleId',
-            message:'Desired role ID:'
+            message:'Desired role ID for employee:'
         },
     ]).then((res) => {
         connection.query('UPDATE employee SET ? WHERE ?', 
@@ -205,7 +205,7 @@ function  updateEmployee() {
 }
 
 
-const removeEmployee = () => {
+function removeEmployee () {
     inquirer.prompt([
             {
                 type: "input",
@@ -218,8 +218,8 @@ const removeEmployee = () => {
             }),
             (err, res) => {
                 if (err) throw err;
-                console.log(res);
-                start();
+                console.log("---- Employee removed ---- ");
+                viewEmployees();
             };
         });
 }
