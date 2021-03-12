@@ -108,6 +108,7 @@ function addRole() {
             salary: res.addSalary,
             department_id: res.addDeptId
         });
+        console.log("---- Role added ---- ");
         viewRoles();
     });
 }
@@ -153,13 +154,13 @@ function addEmployee() {
             manager_id: res.addMgrID
         });
         console.log("---- Employee added ---- ");
-    start();
+    viewEmployees();
     })
 }
 
 //VIEW EMPLOYEE
 function viewEmployees() {
-    connection.query('SELECT * FROM employee ORDER BY first_name',(err, res) => {
+    connection.query('SELECT employee_id, first_name, last_name, role FROM employee JOIN role ON employee.role_id = role.role_id ORDER BY first_name',(err, res) => {
         if (err) throw err;
         console.table(res);
         start();
@@ -168,7 +169,7 @@ function viewEmployees() {
 
 //UPDATE EMPLOYEE ROLE
 function  updateEmployee() {
-    connection.query('SELECT employee_id, first_name, last_name, role FROM employee JOIN role ON employee.role_id = role.role_id ORDER BY first_name',(err, res) => {
+    connection.query('SELECT employee_id, first_name, last_name, role, manager_id AS manager FROM employee JOIN role ON employee.role_id = role.role_id ORDER BY first_name',(err, res) => {
         if (err) throw err;
         console.table(res);
 
@@ -196,12 +197,13 @@ function  updateEmployee() {
         (err, res) => {
             if (err) throw err;
             console.log("---- Employee role updated ---- ");
-            start();
+            viewEmployees();
         }
         );  
     });
 });
 }
+
 
 const removeEmployee = () => {
     inquirer.prompt([
