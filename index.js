@@ -70,7 +70,7 @@ function addDepartment() {
             dept_name: res.addDepartment
         });
         console.log("---- Department added ---- ");
-    start();
+    viewDepartment();
     })
 }
 
